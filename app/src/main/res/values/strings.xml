@@ -12,4 +12,11 @@
     <string name="uwu_first_fragment">UwU first fragment</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="number_1">Numero 1</string>
+    <string name="number_2">Numero 2</string>
+    <string name="calcular">Calcular</string>
+    <string name="sumar">Sumar</string>
+    <string name="restar">Restar</string>
+    <string name="multiplicar">Multiplicar</string>
+    <string name="dividir">Dividir</string>
 </resources>
