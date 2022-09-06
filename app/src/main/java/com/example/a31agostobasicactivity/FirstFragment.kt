@@ -5,10 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.Toast
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.a31agostobasicactivity.databinding.FragmentFirstBinding
 
@@ -25,7 +22,8 @@ class FirstFragment : Fragment() {
 
     private lateinit var txt_numero1: EditText
     private lateinit var txt_numero2: EditText
-    private lateinit var txt_respuesta: EditText
+    private lateinit var txt_respuesta: EditText  //textBox respuesta
+    private var mensaje_respuesta: String = ""
 
     private lateinit var rad_butt_sum: RadioButton
     private lateinit var rad_butt_res: RadioButton
@@ -34,6 +32,10 @@ class FirstFragment : Fragment() {
 
     private lateinit var rad_group: RadioGroup
 
+    private lateinit var checkBox_sum: CheckBox
+    private lateinit var checkBox_res: CheckBox
+    private lateinit var checkBox_mul: CheckBox
+    private lateinit var checkBox_div: CheckBox
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +54,11 @@ class FirstFragment : Fragment() {
 
         rad_group = binding.radioGroupOperaciones
 
+        checkBox_sum = binding.checkBoxSuma
+        checkBox_res = binding.checkBoxResta
+        checkBox_mul = binding.checkBoxMultiplicacion
+        checkBox_div = binding.checkBoxDivision
+
 
         return binding.root
 
@@ -65,19 +72,38 @@ class FirstFragment : Fragment() {
         }
 
         binding.buttonCalcular.setOnClickListener{
-            if (rad_butt_sum.isChecked){
-                //sumar
-                sum()
-            } else if (rad_butt_res.isChecked){
-                //restar
-                res()
-            } else if (rad_butt_mul.isChecked){
-                //multiplicar
-                mul()
-            } else if (rad_butt_div.isChecked){
-                //dividir
-                div()
+            var textoNumero1: String =  txt_numero1.text.toString()
+            var textoNumero2: String =  txt_numero2.text.toString()
+
+            if ((!rad_butt_sum.isChecked and !rad_butt_res.isChecked and !rad_butt_mul.isChecked
+                and !rad_butt_div.isChecked and !checkBox_sum.isChecked and !checkBox_res.isChecked
+                and !checkBox_mul.isChecked and !checkBox_div.isChecked) or (textoNumero1 == "") or (textoNumero2 == "") ){
+                print("Ingrese los numeros y Seleccione la operacion a realizar")
             }
+
+            if (rad_butt_sum.isChecked or checkBox_sum.isChecked){
+                //sumar
+                mensaje_respuesta += "Suma: " + sum() + "\n"
+                txt_respuesta.setText(mensaje_respuesta)
+            }
+            if (rad_butt_res.isChecked or checkBox_res.isChecked){
+                //restar
+                mensaje_respuesta += "Resta: " + res() + "\n"
+                txt_respuesta.setText(mensaje_respuesta)
+            }
+            if (rad_butt_mul.isChecked or checkBox_mul.isChecked){
+                //multiplicar
+                mensaje_respuesta += "Multiplicacion: " + mul() + "\n"
+                txt_respuesta.setText(mensaje_respuesta)
+            }
+            if (rad_butt_div.isChecked or checkBox_div.isChecked){
+                //dividir
+                mensaje_respuesta += "Division: " + div() + "\n"
+                txt_respuesta.setText(mensaje_respuesta)
+            }
+
+            //limpiar variable
+            mensaje_respuesta = ""
         }
     }
 
@@ -85,33 +111,37 @@ class FirstFragment : Fragment() {
         Toast.makeText(this.context, mensaje, Toast.LENGTH_SHORT).show()
     }
 
-    fun sum(){
+    fun sum(): String{
         var numero1: Double = txt_numero1.text.toString().toDouble()
         var numero2: Double = txt_numero2.text.toString().toDouble()
 
         var resultado: Double = numero1 + numero2 //tipo double
-        txt_respuesta.setText(resultado.toString())
+        //txt_respuesta.setText(resultado.toString())
+        return resultado.toString()
     }
-    fun res(){
+    fun res(): String{
         var numero1: Double = txt_numero1.text.toString().toDouble()
         var numero2: Double = txt_numero2.text.toString().toDouble()
 
         var resultado: Double = numero1 - numero2 //tipo double
-        txt_respuesta.setText(resultado.toString())
+        //txt_respuesta.setText(resultado.toString())
+        return resultado.toString()
     }
-    fun mul(){
+    fun mul(): String{
         var numero1: Double = txt_numero1.text.toString().toDouble()
         var numero2: Double = txt_numero2.text.toString().toDouble()
 
         var resultado: Double = numero1 * numero2 //tipo double
-        txt_respuesta.setText(resultado.toString())
+        //txt_respuesta.setText(resultado.toString())
+        return resultado.toString()
     }
-    fun div(){
+    fun div(): String{
         var numero1: Double = txt_numero1.text.toString().toDouble()
         var numero2: Double = txt_numero2.text.toString().toDouble()
 
         var resultado: Double = numero1 / numero2 //tipo double
-        txt_respuesta.setText(resultado.toString())
+        //txt_respuesta.setText(resultado.toString())
+        return resultado.toString()
     }
 
     //hacer lo mismo con checkbox
