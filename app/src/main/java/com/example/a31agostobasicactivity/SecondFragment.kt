@@ -51,7 +51,7 @@ class SecondFragment : Fragment() {
         // definir el array adapter ArrayAdapter <String> adapter = new ArrayAdapter
 
         val miArrayAdapter =
-            this.context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_item,listaOpciones) }
+            this.context?.let { ArrayAdapter(it,R.layout.spiner_personalizado,listaOpciones) }
 
         spiner_operaciones.adapter = miArrayAdapter// aqui asignarle el array adapter
         return binding.root
