@@ -69,13 +69,24 @@ class SecondFragment : Fragment() {
             //boton calculadora
             var spiner_operaciones_texto: String = spiner_operaciones.selectedItem.toString()
 
-            when (spiner_operaciones_texto) {
-                "Sumar" -> txt_respuesta.setText("suma")
-                "Restar" -> txt_respuesta.setText("resta")
-                "Multiplicar" -> txt_respuesta.setText("multi")
-                "Dividir" -> txt_respuesta.setText("divi")
+            var textoNumero1: String =  txt_numero1.text.toString()
+            var textoNumero2: String =  txt_numero2.text.toString()
 
+            var resultadoOperacion: String = ""
+
+            if (!(textoNumero1 == "") and !(textoNumero2 == "")){
+                when (spiner_operaciones_texto) {
+                    "Sumar" -> resultadoOperacion = sum()         //txt_respuesta.setText("suma")
+                    "Restar" -> resultadoOperacion = res()
+                    "Multiplicar" -> resultadoOperacion = mul()
+                    "Dividir" -> resultadoOperacion = div()
+                }
+                txt_respuesta.setText(resultadoOperacion)
+            }else{
+                print("Porfavor ingrese los numeros")
             }
+
+
 
         }
     }
